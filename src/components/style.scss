@@ -1,0 +1,39 @@
+#indexcrud {
+    #filtros{
+        display: flex;
+        margin: 5%;
+        flex-wrap: wrap;
+        flex-direction: row;
+        align-content: center;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    #divTabela {
+        margin: 5%;
+        margin-top: 15px;
+        p{
+            width: 15%;
+        }
+    
+        .list-group-item {
+            display: flex !important;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #addButton {
+            margin-top: 15px;
+            width: 30%;
+        }
+        .b-icone:hover{
+            cursor: pointer;
+        }
+    }
+
+    #modal-1 {
+        select {
+            margin-top: 10px !important;
+        }
+    }
+}

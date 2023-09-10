@@ -1,0 +1,17 @@
+#movement{
+    margin: 5%;
+    margin-top: 15px;
+
+    .list-group-item {
+        display: flex !important;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+    }
+    p{
+        width: 15%;
+    }
+    .b-icone:hover{
+        cursor: pointer;
+    }
+}

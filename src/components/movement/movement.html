@@ -1,0 +1,59 @@
+<div id="movement">
+    <h2>Movimentações</h2>
+    <b-list-group>
+        <b-list-group-item v-for="(movement, id) in movements" :key="id">
+            <p>{{movement.idContainerMovement}}</p>
+            <p>{{movement.tipoMov}}</p>
+            <p>{{movement.horaInicio}}</p>
+            <p>{{movement.horaFim}}</p>
+            <span>
+            </span>
+            <b-icon icon="pencil" variant="warning" class="b-icone" @click="openContentMov(movement)"/>
+            <b-icon icon="trash" scale="1" variant="primary" class="b-icone" @click="deleteMovement(movement.idMovement)"/>
+        </b-list-group-item>
+    </b-list-group>
+
+    <b-modal v-if="container" id="modal-3" hide-footer title="Registrar Movimentação" ref="modalCadMov">
+        <div>
+            <p>{{errorMsgModal}}</p>
+            <b-form-input v-model="container.idContainer" disabled></b-form-input>
+            <b-form-select v-model="tipoMov">
+                <b-form-select-option :value="null">Selecione o Tipo de Movimentação</b-form-select-option>
+                <b-form-select-option value="Embarque">Embarque</b-form-select-option>
+                <b-form-select-option value="Descarga">Descarga</b-form-select-option>
+                <b-form-select-option value="Gate In">Gate In</b-form-select-option>
+                <b-form-select-option value="Gate Out">Gate Out</b-form-select-option>
+                <b-form-select-option value="Reposicionamento">Reposicionamento</b-form-select-option>
+                <b-form-select-option value="Pesagem">Pesagem</b-form-select-option>
+                <b-form-select-option value="Scanner">Scanner</b-form-select-option>
+            </b-form-select>
+            <b-form-datepicker v-model="dia"></b-form-datepicker>
+            <b-form-timepicker v-model="hInicio" />
+            <b-form-timepicker v-model="hFim" />
+            <b-button variant="outline-primary" block @click="cadMovement">Registrar</b-button>
+            <b-button variant="outline-danger" block @click="hideModalCadMov">Cancelar</b-button>
+        </div>
+    </b-modal>
+
+    <b-modal id="modal-4" hide-footer title="Editar Movimento" ref="modalAlterMov">
+        <div v-if="selectedMov"><p>{{errorMsgModal}}</p>
+            <b-form-select v-model="tipoMov">
+                <b-form-select-option :value="null">Selecione o Tipo de Movimentação</b-form-select-option>
+                <b-form-select-option value="Embarque">Embarque</b-form-select-option>
+                <b-form-select-option value="Descarga">Descarga</b-form-select-option>
+                <b-form-select-option value="Gate In">Gate In</b-form-select-option>
+                <b-form-select-option value="Gate Out">Gate Out</b-form-select-option>
+                <b-form-select-option value="Reposicionamento">Reposicionamento</b-form-select-option>
+                <b-form-select-option value="Pesagem">Pesagem</b-form-select-option>
+                <b-form-select-option value="Scanner">Scanner</b-form-select-option>
+            </b-form-select>
+            <b-form-datepicker v-model="dia"></b-form-datepicker>
+            <b-form-timepicker v-model="hInicio" />
+            <b-form-timepicker v-model="hFim" />
+        <div>
+          <b-button variant="outline-primary" block @click="alterMov">Alterar</b-button>
+          <b-button variant="outline-danger" block @click="hideModalCadContainer" >Cancelar</b-button>
+        </div>
+      </div>
+      </b-modal>
+</div>

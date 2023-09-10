@@ -1,0 +1,105 @@
+<div id="indexcrud">
+  <h2>Container</h2>
+
+  <div id="filtros">
+    <b-form-group label="Status">
+      <b-form-radio v-model="selectedStatus" name="statusRadio" :value="null">Todos</b-form-radio>
+      <b-form-radio v-model="selectedStatus" name="statusRadio" value="Cheio">Cheio</b-form-radio>
+      <b-form-radio v-model="selectedStatus" name="statusRadio" value="Vazio">Vazio</b-form-radio>
+    </b-form-group>
+
+    <b-form-group label="Categoria">
+      <b-form-radio v-model="selectedCategoria" name="catRadios" :value="null">Todas</b-form-radio>
+      <b-form-radio v-model="selectedCategoria" name="catRadios" value="Importação">Importação</b-form-radio>
+      <b-form-radio v-model="selectedCategoria" name="catRadios" value="Exportação">Exportação</b-form-radio>
+    </b-form-group>
+  </div>
+
+  <div id="divTabela">
+
+    <b-list-group>
+      <b-list-group-item v-for="(container) in containers" :key="container.idContainer">
+        <p>{{container.idContainer}}</p>
+        <p>{{container.numContainer}}</p>
+        <p>{{container.cliente}}</p>
+        <p>{{container.categoria}}</p>
+        <p>{{container.tipo}}</p>
+        <span :style="{color : 
+            container.statusContainer == 'Vazio'?'red': 'green'}">
+          {{container.statusContainer}}
+        </span>
+
+        <b-icon icon="recycle" variant="secondary" class="b-icone" @click="registrarMovement(container)" />
+        <b-icon icon="pencil" variant="warning" @click="openContentModal(container)" class="b-icone" />
+        <b-icon icon="trash" scale="1" variant="primary" @click="deleteContainer(container.idContainer)"
+          class="b-icone" />
+      </b-list-group-item>
+    </b-list-group>
+    <b-form>
+      <b-button v-b-modal.modal-1 variant="primary" id="addButton">Adicionar</b-button>
+    </b-form>
+  </div>
+  <div>
+
+    <Movement :container="propsData" />
+
+    <b-modal id="modal-1" hide-footer title="Adicionar Container" ref="modalCadContainer">
+      <p>{{errorMsgModal}}</p>
+      <b-form-input v-model="cliente" placeholder="Cliente"></b-form-input>
+      <b-form-input v-model="numContainer" placeholder="Número do Container" maxLength="11"></b-form-input>
+      <b-form-select v-model="tipo">
+        <b-form-select-option :value="null">Selecione o Tipo</b-form-select-option>
+        <b-form-select-option value="20">20</b-form-select-option>
+        <b-form-select-option value="40">40</b-form-select-option>
+      </b-form-select>
+      <b-form-select v-model="status">
+        <b-form-select-option :value="null">Selecione o Status</b-form-select-option>
+        <b-form-select-option value="Cheio">Cheio</b-form-select-option>
+        <b-form-select-option value="Vazio">Vazio</b-form-select-option>
+      </b-form-select>
+      <b-form-select v-model="categoria">
+        <b-form-select-option :value="null">Selecione a Categoria</b-form-select-option>
+        <b-form-select-option value="Importação">Importação</b-form-select-option>
+        <b-form-select-option value="Exportação">Exportação</b-form-select-option>
+      </b-form-select>
+      <div>
+        <b-button variant="outline-primary" block @click="cadContainer">Adicionar</b-button>
+        <b-button variant="outline-danger" block @click="hideModalCadContainer">Cancelar</b-button>
+      </div>
+    </b-modal>
+
+    <b-modal id="modal-2" hide-footer title="Editar Container" ref="modalCadContainerUpdate">
+      <div v-if="selectedCont">
+        <p>{{errorMsgModal}}</p>
+        <b-form-input v-model="cliente"></b-form-input>
+        <b-form-input v-model="numContainer" maxLength="11"></b-form-input>
+        <b-form-select v-model="tipo">
+          <b-form-select-option :value="null">Selecione o Tipo</b-form-select-option>
+          <b-form-select-option value="20">20</b-form-select-option>
+          <b-form-select-option value="40">40</b-form-select-option>
+        </b-form-select>
+        <b-form-select v-model="status">
+          <b-form-select-option :value="null">Selecione o Status</b-form-select-option>
+          <b-form-select-option value="Cheio">Cheio</b-form-select-option>
+          <b-form-select-option value="Vazio">Vazio</b-form-select-option>
+        </b-form-select>
+        <b-form-select v-model="categoria">
+          <b-form-select-option :value="null">Selecione a Categoria</b-form-select-option>
+          <b-form-select-option value="Importação">Importação</b-form-select-option>
+          <b-form-select-option value="Exportação">Exportação</b-form-select-option>
+        </b-form-select>
+        <div>
+          <b-button variant="outline-primary" block @click="alterContainer">Alterar</b-button>
+          <b-button variant="outline-danger" block @click="hideModalCadContainer">Cancelar</b-button>
+        </div>
+      </div>
+    </b-modal>
+
+  </div>
+  <div>
+    <b-form>
+      <h3>Importações: {{totalImport}}</h3>
+      <h3>Exportações: {{totalExport}}</h3>
+    </b-form>
+  </div>
+</div>
