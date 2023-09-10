@@ -32,18 +32,14 @@ export default {
     watch:{
         selectedCategoria(newVal){
             console.log(newVal)
-            //apos capturar a mudança chama a função axios
             if(newVal){
                this.filterByCat(newVal);
             }
             else{
-                //se for null ele so chama o getContainers
-                // novamente que retornará tudo
                 this.getContainers();
             }
         },
         selectedStatus(newVal){
-            //apos capturar a mudança chama a função axios
             if(newVal){
                 this.filterByStatus(newVal);
             }else{
