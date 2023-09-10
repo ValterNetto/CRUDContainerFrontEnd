@@ -1,24 +1,24 @@
-# crud
+# crud - IMPORTANT INFO
 
-## Project setup
+## Inicializando o Projeto
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Compilar e iniciar o servidor
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Compilar e minificar o código
 ```
 npm run build
 ```
 
-### Lints and fixes files
+### Instalações que podem ser necessárias
 ```
-npm run lint
+npm install sass
+npm install sass-loader
+npm install axios vue-axios
+npm install bootstrap-vue bootstrap
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
