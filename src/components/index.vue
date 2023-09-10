@@ -29,14 +29,6 @@ export default {
             totalExport: null,
         };
     },
-    //metodo para ficar de olho nas variaveis selected status e categoria
-    //fica igual eu fico com vc, so observando kkk
-    // para criar a função vc implementa o ciclo de vida vue 
-    // que é o watch e dentro dele vc chama a sua variavel refrenciando 
-    //uma variavel de escopo, para capturar o valor 
-    //se eu quisesse pegar o valor novo e o antigo 
-    //bastaria apenas acrescentar outra variavel dentro 
-    //ex: selectedCategoria(newVal, oldVal)
     watch:{
         selectedCategoria(newVal){
             console.log(newVal)
